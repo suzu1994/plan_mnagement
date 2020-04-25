@@ -46,23 +46,14 @@ public class MainFrame extends Frame{
         for(Checkbox chk : chk_list){
             chk.setFont(new Font("Arial",Font.PLAIN,60));
         }
-        
-        chk_list.get(0).addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent arg0){
-                data.state = EvaluatedState.ICHI;
-            }
-        });
-        chk_list.get(1).addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent arg0){
-                data.state = EvaluatedState.NI;
-            }
-        });
 
-        chk_list.get(2).addItemListener(new ItemListener(){
-            public void itemStateChanged(ItemEvent arg0){
-                data.state = EvaluatedState.SAN;
-            }
-        });
+        for(EvaluatedState tmp_state : EvaluatedState.values()){
+            chk_list.get(tmp_state.ordinal()).addItemListener(new ItemListener(){
+                public void itemStateChanged(ItemEvent arg0){
+                    data.state = tmp_state;
+                }
+            });
+        }
 
         Panel pnl1 = new Panel();
         pnl1.setLayout(new GridLayout(1,3));
